@@ -7,4 +7,12 @@ public class FIXOrderEvent extends TradeEvent {
         this.orderId = orderId;
         this.quantity = quantity;
     }
+
+    @Override
+    public void dispatch() {
+        double totalValue = basePrice * quantity;
+        System.out.println("[FIX Order Dispatched] ID: " + orderId + " | Qty: " + quantity + 
+                           " | Price: $" + basePrice + " | Total: $" + totalValue + 
+                           " | Sender: " + senderId);
+    }
 }
