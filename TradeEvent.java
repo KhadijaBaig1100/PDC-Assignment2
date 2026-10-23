@@ -8,4 +8,18 @@ public abstract class TradeEvent {
         this.basePrice = basePrice;
         this.timestamp = System.currentTimeMillis();
     }
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    public double getBasePrice() {
+        return basePrice;
+    }
+
+    public abstract void dispatch();
 }
