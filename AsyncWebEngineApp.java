@@ -11,5 +11,14 @@ public class AsyncWebEngineApp {
         System.out.println("\nSpawning concurrent workers...\n");
         telemetryWorker.start();
         logWorker.start();
+
+        try {
+            telemetryWorker.join();
+            logWorker.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("\nBoth asynchronous tasks completed successfully.");
     }
 }
