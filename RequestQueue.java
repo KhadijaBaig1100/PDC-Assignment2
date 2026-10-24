@@ -20,4 +20,22 @@ public class RequestQueue {
     public boolean isFull() {
         return size == capacity;
     }
+
+    public void enqueue(char c) {
+        if (!isFull()) {
+            rear = (rear + 1) % capacity;
+            queueArray[rear] = c;
+            size++;
+        }
+    }
+
+    public char dequeue() {
+        if (!isEmpty()) {
+            char item = queueArray[front];
+            front = (front + 1) % capacity;
+            size--;
+            return item;
+        }
+        return '\0';
+    }
 }
