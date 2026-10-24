@@ -16,4 +16,17 @@ public class TransactionStack {
     public boolean isFull() {
         return top == capacity - 1;
     }
+
+    public void push(char c) {
+        if (!isFull()) {
+            stackArray[++top] = c;
+        }
+    }
+
+    public char pop() {
+        if (!isEmpty()) {
+            return stackArray[top--];
+        }
+        return '\0';
+    }
 }
