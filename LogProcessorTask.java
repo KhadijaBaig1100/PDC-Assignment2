@@ -1,6 +1,8 @@
 public class LogProcessorTask implements Runnable {
     @Override
     public void run() {
-        // Runnable task logic
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("[LogProcessor] Processing log batch #" + i);
+        }
     }
 }
