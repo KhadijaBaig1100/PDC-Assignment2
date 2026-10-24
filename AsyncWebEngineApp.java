@@ -7,5 +7,9 @@ public class AsyncWebEngineApp {
 
         System.out.println("Telemetry Thread State before start: " + telemetryWorker.getState());
         System.out.println("Log Worker Thread State before start: " + logWorker.getState());
+
+        System.out.println("\nSpawning concurrent workers...\n");
+        telemetryWorker.start();
+        logWorker.start();
     }
 }
