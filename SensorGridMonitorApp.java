@@ -13,5 +13,12 @@ public class SensorGridMonitorApp {
         }
 
         System.out.println("Generated " + gridSize + " temperature/vibration sensor readings.");
+
+        int mid = gridSize / 2;
+
+        ParallelMinSearch minTask1 = new ParallelMinSearch(sensorArray, 0, mid);
+        ParallelMinSearch minTask2 = new ParallelMinSearch(sensorArray, mid, gridSize);
+        ParallelMaxSearch maxTask1 = new ParallelMaxSearch(sensorArray, 0, mid);
+        ParallelMaxSearch maxTask2 = new ParallelMaxSearch(sensorArray, mid, gridSize);
     }
 }
