@@ -26,9 +26,31 @@ public class SensorGridMonitorApp {
         Thread t3 = new Thread(maxTask1, "MaxWorker-1");
         Thread t4 = new Thread(maxTask2, "MaxWorker-2");
 
+        long startTime = System.nanoTime();
+
         t1.start();
         t2.start();
         t3.start();
         t4.start();
+
+        try {
+            t1.join();
+            t2.join();
+            t3.join();
+            t4.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        double globalMin = Math.min(minTask1.getMinValue(), minTask2.getMinValue());
+        double globalMax = Math.max(maxTask1.getMaxValue(), maxTask2.getMaxValue());
+
+        long endTime = System.nanoTime();
+        double durationMs = (endTime - startTime) / 1e6;
+
+        System.out.println("\n=== Parallel Reduction Results ===");
+        System.out.println("Global Minimum Reading : " + String.format("%.2f", globalMin) + " °C");
+        System.out.println("Global Maximum Reading : " + String.format("%.2f", globalMax) + " °C");
+        System.out.println("Execution Time          : " + String.format("%.3f", durationMs) + " ms");
     }
 }
