@@ -10,4 +10,13 @@ public class ParallelMinSearch implements Runnable {
         this.end = end;
         this.minValue = Double.MAX_VALUE;
     }
+
+    @Override
+    public void run() {
+        for (int i = start; i < end; i++) {
+            if (sensorArray[i] < minValue) {
+                minValue = sensorArray[i];
+            }
+        }
+    }
 }
