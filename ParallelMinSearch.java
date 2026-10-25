@@ -19,4 +19,8 @@ public class ParallelMinSearch implements Runnable {
             }
         }
     }
+
+    public double getMinValue() {
+        return minValue;
+    }
 }
