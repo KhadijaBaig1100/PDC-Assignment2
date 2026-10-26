@@ -27,6 +27,28 @@ public class InventoryCatalogManager {
         return (endTime - startTime) / 1e6;
     }
 
+    private static double testConcurrentHashMap() throws InterruptedException {
+        ConcurrentMap<String, CatalogItem> concMap = new ConcurrentHashMap<>();
+        for (int i = 0; i < 10; i++) {
+            concMap.put("SKU_" + i, new CatalogItem("SKU_" + i, 100));
+        }
+
+        Thread[] threads = new Thread[NUM_THREADS];
+        long startTime = System.nanoTime();
+
+        for (int i = 0; i < NUM_THREADS; i++) {
+            threads[i] = new Thread(new ConcurrentHashMapWorker(concMap, UPDATES_PER_THREAD));
+            threads[i].start();
+        }
+
+        for (Thread t : threads) {
+            t.join();
+        }
+
+        long endTime = System.nanoTime();
+        return (endTime - startTime) / 1e6;
+    }
+
     public static void main(String[] args) {
         System.out.println("=== Inventory Catalog Concurrency Benchmark ===");
     }
