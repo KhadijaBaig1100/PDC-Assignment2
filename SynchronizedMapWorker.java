@@ -10,5 +10,15 @@ public class SynchronizedMapWorker implements Runnable {
     }
 
     @Override
-    public void run() {}
+    public void run() {
+        for (int i = 0; i < iterations; i++) {
+            String key = "SKU_" + (i % 10);
+            synchronized (catalog) {
+                CatalogItem item = catalog.get(key);
+                if (item != null) {
+                    item.updateStock(1);
+                }
+            }
+        }
+    }
 }
