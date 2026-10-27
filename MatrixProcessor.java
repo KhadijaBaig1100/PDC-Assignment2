@@ -27,4 +27,14 @@ public class MatrixProcessor {
         }
         return sum;
     }
+
+    public double sumColumnMajor() {
+        double sum = 0.0;
+        for (int j = 0; j < cols; j++) {
+            for (int i = 0; i < rows; i++) {
+                sum += matrix[i][j];
+            }
+        }
+        return sum;
+    }
 }
