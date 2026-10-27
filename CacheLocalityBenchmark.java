@@ -13,5 +13,12 @@ public class CacheLocalityBenchmark {
         double rowTimeMs = (endRow - startRow) / 1e6;
 
         System.out.println("Row-Major (Sequential) Time : " + String.format("%.3f", rowTimeMs) + " ms | Sum: " + String.format("%.2f", rowSum));
+
+        long startCol = System.nanoTime();
+        double colSum = processor.sumColumnMajor();
+        long endCol = System.nanoTime();
+        double colTimeMs = (endCol - startCol) / 1e6;
+
+        System.out.println("Column-Major (Strided) Time  : " + String.format("%.3f", colTimeMs) + " ms | Sum: " + String.format("%.2f", colSum));
     }
 }
